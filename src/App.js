@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Outlet,Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -40,13 +41,12 @@ const AppBar = (props) => (
   />
 );
 
-
 const App = () => {
   //Use state
   const [showSidebar, setShowSidebar] = useState(false);
 
   //Inner Menu Items
-  const innerMenuItems = ['mainInner'];
+  const innerMenuItems = ["mainInner"];
 
   return (
     <Grommet theme={theme} full>
@@ -74,7 +74,12 @@ const App = () => {
                     justify="center"
                   >
                     <Box flex width="large">
-                      <MyAccordion labelName="Main" innerMenu={innerMenuItems}></MyAccordion>
+                      <MyAccordion
+                        labelName="Main"
+                        innerMenu={innerMenuItems}
+                      ></MyAccordion>
+                      <Link to="/invoices">Invoices</Link> |{" "}
+                      <Link to="/expenses">Expenses</Link>
                     </Box>
                   </Box>
                 </Collapsible>
@@ -104,6 +109,7 @@ const App = () => {
               )}
               <Box flex align="center" justify="center">
                 app body
+                <Outlet />
               </Box>
             </Box>
           </Box>
