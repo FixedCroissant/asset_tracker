@@ -10,6 +10,9 @@ import {
 } from "grommet";
 import { FormClose, Menu } from "grommet-icons";
 
+//Components
+import MyAccordion from "./Accordian";
+
 const theme = {
   global: {
     colors: {
@@ -37,9 +40,13 @@ const AppBar = (props) => (
   />
 );
 
+
 const App = () => {
   //Use state
   const [showSidebar, setShowSidebar] = useState(false);
+
+  //Inner Menu Items
+  const innerMenuItems = ['mainInner'];
 
   return (
     <Grommet theme={theme} full>
@@ -66,7 +73,9 @@ const App = () => {
                     align="center"
                     justify="center"
                   >
-                    sidebar here
+                    <Box flex width="large">
+                      <MyAccordion labelName="Main" innerMenu={innerMenuItems}></MyAccordion>
+                    </Box>
                   </Box>
                 </Collapsible>
               ) : (
@@ -92,7 +101,6 @@ const App = () => {
                     sidebar
                   </Box>
                 </Layer>
-                
               )}
               <Box flex align="center" justify="center">
                 app body
