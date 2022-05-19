@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet,Link } from "react-router-dom";
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   ResponsiveContext,
 } from "grommet";
 import { FormClose, Menu } from "grommet-icons";
+import axios from 'axios';
 
 //Components
 import MyAccordion from "./Accordian";
@@ -41,12 +42,37 @@ const AppBar = (props) => (
   />
 );
 
+//temp
+let myData = [ {
+  name: "Santa Monica",
+  number: 1995,
+  amount: "$10,800",
+  due: "12/05/1995"
+}];
+
 const App = () => {
+  
+
   //Use state
   const [showSidebar, setShowSidebar] = useState(false);
+  let [information,setInformation] = useState(false);
 
   //Inner Menu Items
   const innerMenuItems = ["mainInner"];
+
+  //Use effect to pull in API
+  useEffect(() => {
+    axios
+      .get("http://10.152.39.73:105/json/jsonreturn")
+      .then( response => {
+          console.log(response.data)
+          setInformation(response.data)
+        
+          
+      }).catch((error) => {
+        console.log(error);
+      });
+  }, [setInformation]);
 
   return (
     <Grommet theme={theme} full>
@@ -80,6 +106,7 @@ const App = () => {
                       ></MyAccordion>
                       <Link to="/invoices">Invoices</Link> |{" "}
                       <Link to="/expenses">Expenses</Link>
+                      Hello
                     </Box>
                   </Box>
                 </Collapsible>
@@ -109,6 +136,11 @@ const App = () => {
               )}
               <Box flex align="center" justify="center">
                 app body
+
+                {myData.map(info=>(
+                    info.name
+
+                ))}
                 <Outlet />
               </Box>
             </Box>
