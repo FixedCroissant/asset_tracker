@@ -23,7 +23,7 @@ const MyAccordion = (props) => {
 
       <AccordionPanel label="Account Info">
         {!auth.user && <Link to="login">Login</Link>}
-
+        {auth.user && <Link to="logout">Logout</Link>}
         <Link to="protected">My Protected Page</Link>
       </AccordionPanel>
     </Accordion>
