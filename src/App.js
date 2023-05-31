@@ -1,54 +1,99 @@
-import "./App.css";
+import { UserOutlined, SettingOutlined } from "@ant-design/icons";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
+//import { useState } from "react";
+const { Header, Content, Sider } = Layout;
 
-//import { Layout, Header, Sider, Content, Footer } from "antd";
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
 
-// const App = () => {
-// };
+//Menu items.
+const items = [
+  getItem("Navigation One", "sub1", <UserOutlined />, [
+    getItem(
+      "Item 1",
+      "g1",
+      null,
+      [getItem("Option 1", "Item 1"), getItem("Option 2", "Item 2")],
+      "group"
+    ),
+  ]),
+  {
+    type: "divider",
+  },
+  getItem("Navigation Two", "sub4", <SettingOutlined />, [
+    getItem("Option 3", "Item 3"),
+  ]),
+];
 
-import { Layout, Space } from "antd";
-const { Header, Footer, Sider, Content } = Layout;
-const headerStyle = {
-  textAlign: "center",
-  color: "#fff",
-  height: 64,
-  paddingInline: 50,
-  lineHeight: "64px",
-  backgroundColor: "#7dbcea",
-};
-const contentStyle = {
-  textAlign: "center",
-  minHeight: 120,
-  lineHeight: "120px",
-  color: "#fff",
-  backgroundColor: "#108ee9",
-};
-const siderStyle = {
-  textAlign: "center",
-  lineHeight: "120px",
-  color: "#fff",
-  backgroundColor: "#3ba0e9",
-};
-const footerStyle = {
-  textAlign: "center",
-  color: "#fff",
-  backgroundColor: "#7dbcea",
-};
-const App = () => (
-  <Space
-    direction="vertical"
-    style={{
-      width: "100%",
-    }}
-    size={[0, 48]}
-  >
+const App = () => {
+  const onClick = (e) => {
+    console.log("click ", e);
+
+    console.log(`The item in the key is: ` + e.key);
+  };
+
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+  return (
     <Layout>
-      <Header style={headerStyle}>Header</Header>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div className="logo" />
+      </Header>
       <Layout>
-        <Sider style={siderStyle}>Sider</Sider>
-        <Content style={contentStyle}>Content</Content>
+        <Sider
+          width={270}
+          style={{
+            background: colorBgContainer,
+          }}
+        >
+          <Menu
+            onClick={onClick}
+            style={{
+              width: 270,
+            }}
+            defaultSelectedKeys={["1"]}
+            defaultOpenKeys={["sub1"]}
+            mode="inline"
+            items={items}
+          />
+        </Sider>
+        <Layout
+          style={{
+            padding: "0 24px 24px",
+            height: "100vh",
+          }}
+        >
+          <Breadcrumb
+            style={{
+              margin: "16px 0",
+            }}
+          ></Breadcrumb>
+          <Content
+            style={{
+              padding: 24,
+              margin: 0,
+              height: 100,
+              background: colorBgContainer,
+            }}
+          >
+            Content
+          </Content>
+        </Layout>
       </Layout>
-      <Footer style={footerStyle}>Footer</Footer>
     </Layout>
-  </Space>
-);
+  );
+};
 export default App;
