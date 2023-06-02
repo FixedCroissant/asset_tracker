@@ -32,21 +32,14 @@ const items = [
   },
   getItem("Navigation Two", "sub4", <SettingOutlined />, [
     getItem("Users", "/users"),
+    getItem("Form Page", "/form", <UserOutlined />),
   ]),
 ];
 
 const MainLayout = () => {
   //start
-
-  const navigation = [{ label: "Item1", key: "/home" }];
-
   const navigate = useNavigate();
-
   const onClick = ({ key }) => {
-    console.log(`Hello World!`);
-
-    console.log(`Information about the key below:`);
-    console.log(key);
     //Go to our link.
     navigate(key);
   };
@@ -54,7 +47,9 @@ const MainLayout = () => {
 
   return (
     <Layout>
-      <Header style={{ padding: 0, backgroundColor: "#5e5c5c" }}></Header>
+      <Header style={{ padding: 0, backgroundColor: "#5e5c5c" }}>
+        Current Environment: {process.env.REACT_APP_ENVIRONMENT}
+      </Header>
       <Layout>
         <Sider
           width={270}
@@ -90,7 +85,6 @@ const MainLayout = () => {
               backgroundColor: "#fffff",
             }}
           >
-            Content
             <Outlet />
           </Content>
         </Layout>

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./pages/about";
 import Users from "./pages/users";
 import Home from "./pages/home";
+import FormPage from "./pages/formpage";
 
 //Layouts
 import MainLayout from "./layouts/MainLayout";
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<MainLayout />}>
           <Route path="/about" element={<About />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/form" element={<FormPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
