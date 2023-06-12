@@ -10,12 +10,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment: development
     steps:
       - name: SSH and deploy Node.js application
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: "foo.com"
+          host: ${{secrets.SSH_HOST}}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{vars.SSH_PORT}}
