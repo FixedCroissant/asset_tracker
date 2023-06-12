@@ -20,4 +20,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{vars.SSH_PORT}}
           script_stop: true
-          script: whoami
+          script: |
+            cd ${{vars.PROJECT_LOCATION}}
+            npm run build
