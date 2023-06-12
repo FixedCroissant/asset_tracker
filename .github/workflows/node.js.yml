@@ -13,11 +13,9 @@ jobs:
 
     steps:
       - name: SSH and deploy Node.js application
-
-        ## Use SSH Action to connect to machine and complete operation within server.
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: "foo.com"
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{vars.SSH_PORT}}
