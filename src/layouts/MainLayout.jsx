@@ -85,7 +85,6 @@ const MainLayout = () => {
               backgroundColor: "#fffff",
             }}
           >
-            Updated Text
             <Outlet />
           </Content>
         </Layout>
